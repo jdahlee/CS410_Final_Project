@@ -8,7 +8,7 @@ import pandas as pd
 SKIP_PREPROCESSING = True
 OVERWRITE_SONG_DOCUMENTS = False
 
-SKIP_INDEXING = False
+SKIP_INDEXING = True
 
 song_df_columns = [
     "track_name",
@@ -130,11 +130,15 @@ def process_song_data():
     if not SKIP_PREPROCESSING:
         print(f"Preprocessing documents at {processed_documents_dir}")
         preprocess_song_data(processed_documents_dir)
+    else:
+        print("SKIP_PREPROCESSING=True, skipping preprocessing documents")
 
     documents_indexes_dir = "indexes"
     if not SKIP_INDEXING:
         print(f"Indexing documents at {documents_indexes_dir}")
         create_index(input_dir=processed_documents_dir, index_dir=documents_indexes_dir)
+    else:
+        print("SKIP_INDEXING=True, skipping indexing of documents")
 
 
 if __name__ == "__main__":
